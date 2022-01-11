@@ -1,0 +1,26 @@
+#!/usr/bin/bash
+
+echo "Starting from which cluster to start the inter and self for all of its structures?"
+read i1
+echo "Until which cluster?"
+read i2
+
+for i in $(seq ${i1} ${i2})
+do
+	#make sure you're in folder with the directory of the cifs
+	base=${PWD}/cifs/instance_cifs/
+	structure_list=${base}/${i}_dir_/ins_list_$i
+	listothers=${base}${i1}to${i2}-/inter_list_$i
+	echo ${listothers}
+	$(mkdir ${base}${i1}to${i2}-/Results/${i}_selfninter)
+
+	while read p; 
+	do
+		id=inter_${p::-4}.txt
+	  	$(RNAalign ${base}${i1}to${i2}-/${p} -dir2 ${base}${i1}to${i2}-/ ${listothers} -outfmt 2 > ${base}${i1}to${i2}-/Results/${i}_selfninter/${id})
+	done < $structure_list
+
+	$(RNAalign -dir ${base}${i}_dir_/ ${base}${i}_dir_/ins_list_${i} -outfmt 2 > ${base}${i1}to${i2}-/Results/${i}_selfninter/self.txt)
+	#issue with the logic of the loop <- structure_list makes it do all the stuff already or maybe i've even got everything all wrong
+
+done

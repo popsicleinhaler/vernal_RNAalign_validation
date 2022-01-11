@@ -1,0 +1,16 @@
+#!/usr/bin/bash
+
+echo "which cluster to do the inter for all of its structures?"
+read i
+
+base=/mnt/c/Users/boop/Sync/vernal-project/cifs/instance_cifs/
+structure_list=${base}/${i}_dir_/ins_list_$i
+listothers=${base}3658to3679-/inter_list_$i
+
+$(mkdir ${base}3658to3679-/Results/${i}_selfninter)
+
+while read p; 
+do
+	id=inter_${p::-4}.txt
+  	$(RNAalign ${base}3658to3679-/${p} -dir2 ${base}3658to3679-/ ${listothers} -outfmt 2 > ${base}3658to3679-/Results/${i}_selfninter/${id})
+done < $structure_list
