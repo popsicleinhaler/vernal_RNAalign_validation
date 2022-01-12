@@ -1,7 +1,7 @@
 # vernal_RNAalign_validation
-### QLS rotation 1 - waldispuhl lab
+## QLS rotation 1 - waldispuhl lab
 
-#### Objective:
+### Objective:
 estimate structural similarity of motifs in clusters and compare within the same cluster and between clusters
 
 uses the __RNAalign__ algorithm from: <https://zhanggroup.org/RNA-align/> (install this)
@@ -11,7 +11,7 @@ Ran into issues with RMalign regarding its installation on my WSL2-ubuntu but th
 clone this repo inside of the vernal folder
 must be within the vernal environment (see environment.yml)
 
-#### File Description and Usage
+### File Description and Usage
 
 ___mgraph_instances.py___ contains gkm() function to extract instances from the pickled maga and meta graphs created when running vernal using: python build_motifs/main.py --meta_graph my_metagraph --do_build
 
@@ -44,7 +44,7 @@ ___parse_data.py___ has functions to find the mean similarity and to plot the QC
 
 ___find_range.py___ selenium webscraper for the vernal website used for validation of extracted motifs (deprecated)
 
-#### Workflow
+### Workflow
 1. use line 278-280 of ___pdb_seq.py___ to set the range of the instances pulled from the metagraph
 2. use ___isues1n2.py___ to fix the cif errors that biopython creates (must make changes to the script)
 3. apply __comp_prep.py___ with in-script changes 
